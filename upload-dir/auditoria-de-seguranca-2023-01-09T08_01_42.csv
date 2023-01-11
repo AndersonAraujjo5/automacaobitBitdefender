@@ -1,0 +1,3 @@
+﻿"Endpoint Name","Endpoint IP","Endpoint FQDN","Label","User","URL","Detection Name","Attack Technique","Attempts","Attacker's IP","Targeted IP","Port","Last Blocked"
+"SRV-CAP","172.16.3.200","srv-cap.gp7-cap.local","","MARCELO.TENORIO@GP7-CAP","","Attack.Bruteforce.RDP","credentialAccess","1","92.255.85.163","172.16.3.200","3389","05 January 2023, 15:17:34"
+"SRV-CAP","172.16.3.200","srv-cap.gp7-cap.local","","ponto.data@GP7-CAP","","Attack.Bruteforce.RDP","credentialAccess","1","92.255.85.186","172.16.3.200","3389","03 January 2023, 11:24:19"
