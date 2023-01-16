@@ -15,6 +15,7 @@ public class IncidentesRedeModel {
     private String targetIp;
     private String port;
     private String lastBlocked;
+    private int count;
 
     public IncidentesRedeModel(String endPoint, String endPointIp, String fqdn, String label, String user, String url, String detectionName, String attackTechnique, String attempts, String attackerIp, String targetIp, String port, String lastBlocked) {
         this.endPoint = endPoint;
@@ -134,6 +135,14 @@ public class IncidentesRedeModel {
 
     public void setLastBlocked(String lastBlocked) {
         this.lastBlocked = lastBlocked;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount() {
+        this.count++;
     }
 
     @Override

@@ -1,90 +1,96 @@
 package com.pontodata.relatorios.Models;
 
+
 public class AuditoriaSegurancaModel {
-    private String antimalware;
-    private String atcIds;
-    private String controleConteudo;
-    private String firewall;
-    private String deteccaoAntiexploit;
-    private String defesaAtaque;
-    private String mitigracaoRansomware;
+    private int antimalware;
+    private int atcIds;
+    private int controleConteudo;
+    private int firewall;
+    private int deteccaoAntiexploit;
+    private int defesaAtaque;
+    private int mitigracaoRansomware;
+    private int controleDispositivo;
+    private int totalBloqueio;
 
-    public AuditoriaSegurancaModel(String antimalware, String atcIds, String controleConteudo, String firewall, String deteccaoAntiexploit, String defesaAtaque, String mitigracaoRansomware) {
-        this.antimalware = antimalware;
-        this.atcIds = atcIds;
-        this.controleConteudo = controleConteudo;
-        this.firewall = firewall;
-        this.deteccaoAntiexploit = deteccaoAntiexploit;
-        this.defesaAtaque = defesaAtaque;
-        this.mitigracaoRansomware = mitigracaoRansomware;
-    }
-
-    public String getAntimalware() {
+    public int getAntimalware() {
         return antimalware;
     }
 
-    public void setAntimalware(String antimalware) {
-        this.antimalware = antimalware;
+    public void setAntimalware() {
+        this.antimalware++;
     }
 
-    public String getAtcIds() {
+    public int getAtcIds() {
         return atcIds;
     }
 
-    public void setAtcIds(String atcIds) {
-        this.atcIds = atcIds;
+    public void setAtcIds() {
+        this.atcIds++;
     }
 
-    public String getControleConteudo() {
+    public int getControleConteudo() {
         return controleConteudo;
     }
 
-    public void setControleConteudo(String controleConteudo) {
-        this.controleConteudo = controleConteudo;
+    public void setControleConteudo() {
+        this.controleConteudo++;
     }
 
-    public String getFirewall() {
+    public int getFirewall() {
         return firewall;
     }
 
-    public void setFirewall(String firewall) {
-        this.firewall = firewall;
+    public void setFirewall() {
+        this.firewall++;
     }
 
-    public String getDeteccaoAntiexploit() {
+    public int getDeteccaoAntiexploit() {
         return deteccaoAntiexploit;
     }
 
-    public void setDeteccaoAntiexploit(String deteccaoAntiexploit) {
-        this.deteccaoAntiexploit = deteccaoAntiexploit;
+    public void setDeteccaoAntiexploit() {
+        this.deteccaoAntiexploit++;
     }
 
-    public String getDefesaAtaque() {
+    public int getDefesaAtaque() {
         return defesaAtaque;
     }
 
-    public void setDefesaAtaque(String defesaAtaque) {
-        this.defesaAtaque = defesaAtaque;
+    public void setDefesaAtaque() {
+        this.defesaAtaque++;
     }
 
-    public String getMitigracaoRansomware() {
+    public int getMitigracaoRansomware() {
         return mitigracaoRansomware;
     }
 
-    public void setMitigracaoRansomware(String mitigracaoRansomware) {
-        this.mitigracaoRansomware = mitigracaoRansomware;
+    public void setMitigracaoRansomware() {
+        this.mitigracaoRansomware++;
+    }
+
+    public int getControleDispositivo() {
+        return controleDispositivo;
+    }
+
+    public void setControleDispositivo() {
+        this.controleDispositivo++;
+    }
+
+    public int getTotalBloqueio() {
+        return antimalware+atcIds+controleConteudo+firewall+deteccaoAntiexploit+defesaAtaque+mitigracaoRansomware+controleDispositivo;
     }
 
     @Override
     public String toString() {
-        return "RelatorioAuditoriaModel{" +
-                "antimalware='" + antimalware + '\'' +
-                ", atcIds='" + atcIds + '\'' +
-                ", controleConteudo='" + controleConteudo + '\'' +
-                ", firewall='" + firewall + '\'' +
-                ", deteccaoAntiexploit='" + deteccaoAntiexploit + '\'' +
-                ", defesaAtaque='" + defesaAtaque + '\'' +
-                ", mitigracaoRansomware='" + mitigracaoRansomware + '\'' +
+        return "AuditoriaSegurancaModel{" +
+                "Antimalware=" + antimalware +
+                ", ATC/IDS=" + atcIds +
+                ", Controle de Conteudo=" + controleConteudo +
+                ", Firewall=" + firewall +
+                ", deteccaoAntiexploit=" + deteccaoAntiexploit +
+                ", defesaAtaque=" + defesaAtaque +
+                ", mitigracaoRansomware=" + mitigracaoRansomware +
+                ", Controle deDispositivo=" + controleDispositivo +
                 '}';
     }
 }

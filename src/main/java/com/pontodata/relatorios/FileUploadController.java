@@ -1,8 +1,8 @@
 package com.pontodata.relatorios;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.pontodata.relatorios.Models.AuditoriaSegurancaModel;
+
+import com.pontodata.relatorios.Models.AuditoriaDeSeguranca;
+import com.pontodata.relatorios.Models.IncidentesRedeModel;
 import com.pontodata.relatorios.Models.WebSitesBloqueadosModel;
 import com.pontodata.relatorios.Services.RelatorioService;
 import com.pontodata.relatorios.storage.StorageFileNotFoundException;
@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.xml.crypto.Data;
+import java.awt.print.Pageable;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
@@ -34,6 +35,9 @@ public class FileUploadController {
 
 	private final StorageService storageService;
 	private final RelatorioService relatorioService;
+	private List<AuditoriaDeSeguranca> auditoriaDeSegurancas;
+	private List<IncidentesRedeModel> incidentesRedeModels;
+	private List<WebSitesBloqueadosModel> webSitesBloqueadosModels;
 	@Autowired
 	public FileUploadController(StorageService storageService, RelatorioService relatorioService) {
 		this.storageService = storageService;
@@ -81,11 +85,26 @@ public class FileUploadController {
 		ModelAndView mv = new ModelAndView("uploadForm");
 		File file = new File("./upload-dir");
 		File afile[] = file.listFiles();
-		System.out.println();
-		List<WebSitesBloqueadosModel> web = this.relatorioService.webSites(afile[afile.length-1].getName());
-		int webBlockCount = web.size();
-		System.out.println(webBlockCount);
-		mv.addObject("qwb", webBlockCount);
+		this.auditoriaDeSegurancas = this.relatorioService.auditoriaDeSeguranca(afile[0].getName());
+		this.webSitesBloqueadosModels = this.relatorioService.webSitesBloqueados(afile[2].getName());
+		this.incidentesRedeModels = this.relatorioService.incidenteRede(afile[1].getName());
+		System.err.println(this.relatorioService.countAud().toString());
+		System.err.println(this.relatorioService.countRazaoBloqueio().toString());
+		mv.addObject("auditoria", this.relatorioService.countAud());
+		mv.addObject("webBloquedos", this.relatorioService.countRazaoBloqueio());
+		mv.addObject("incidente", this.relatorioService.incidenteRede(afile[1].getName()).size());
+		return mv;
+	}
+
+	@GetMapping("/relatorio/auditoria")
+	public ModelAndView auditoria(){
+		ModelAndView mv = new ModelAndView("list");
+		List<AuditoriaDeSeguranca> audi = new ArrayList<>();
+		for (int i =0; i<20;i++) {
+			System.out.println(this.auditoriaDeSegurancas.get(i));
+			audi.add(this.auditoriaDeSegurancas.get(i));
+		}
+		mv.addObject("relatorio", audi);
 		return mv;
 	}
 

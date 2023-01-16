@@ -1,27 +1,102 @@
 <!doctype html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bootstrap demo</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
 
-	<div th:if="${message}">
-		<h2 th:text="${message}"/>
-	</div>
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
 
-	<div>
-		<form method="POST" enctype="multipart/form-data" action="/">
-			<table>
-				<tr><td>Incidentes de Rede:</td><td><input type="file" name="incidenteRede" /></td></tr>
-				<tr><td>Auditoria de segurança:</td><td><input type="file" name="auditoria" /></td></tr>
-				<tr><td>Web Sites Bloqueados:</td><td><input type="file" name="webSites" /></td></tr>
-				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-			</table>
-		</form>
-	</div>
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <h2>Faça uploads dos relatorios</h2>
+            <form method="POST" enctype="multipart/form-data" action="/">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Incidentes de Rede</h5>
+                                <input type="file" name="incidenteRede"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Auditoria de segurança</h5>
+                                <input type="file" name="auditoria"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Web Sites Bloqueados</h5>
+                                <input type="file" name="webSites"/></td>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <input type="submit" value="Upload" class="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body" >
+            <h5 class="card-title">Incidentes de Rede</h5>
+            <p>Incidentes: <span class="card-text" th:text="${incidente}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card">
+
+        <div class="card-body">
+            <h5 class="card-title">web sites bloqueados</h5>
+            <p>Anuncios: <span class="card-text" th:text="${webBloquedos.getAnuncios()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Vidio e entreterimento: <span class="card-text" th:text="${webBloquedos.getVidioEntrterimento()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Vidio: <span class="card-text" th:text="${webBloquedos.getVidio()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Rede social: <span class="card-text" th:text="${webBloquedos.getRedeSocial()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Jogos: <span class="card-text" th:text="${webBloquedos.getJogos()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Jogos de Azar: <span class="card-text" th:text="${webBloquedos.getJogosAzar()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Hobbies: <span class="card-text" th:text="${webBloquedos.getHobbies()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Tabloids: <span class="card-text" th:text="${webBloquedos.getTabloides()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Entreterimento: <span class="card-text" th:text="${webBloquedos.entretenimento}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Outros: <span class="card-text" th:text="${webBloquedos.getOutros()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Total de bloqueios: <span class="card-text" th:text="${webBloquedos.getQtBloqueio()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Total de vezes bloqueados: <span class="card-text" th:text="${webBloquedos.getQtVezesBloqueados()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card">
+
+        <div class="card-body" >
+            <h5 class="card-title">Auditoria de segurança</h5>
+            <p>Antimalware: <span class="card-text" th:text="${auditoria.getAntimalware()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>ATC/IDS: <span class="card-text" th:text="${auditoria.getAtcIds()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Controle de Conteudo: <span class="card-text" th:text="${auditoria.getControleConteudo()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Controle de Dispositivos: <span class="card-text" th:text="${auditoria.getControleDispositivo()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Desfesa de Ataque em Rede: <span class="card-text" th:text="${auditoria.getDefesaAtaque()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Detecção antiexploit avançado: <span class="card-text" th:text="${auditoria.getDeteccaoAntiexploit()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Firewall: <span class="card-text" th:text="${auditoria.getFirewall()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Mitigação de RansomWare: <span class="card-text" th:text="${auditoria.getMitigracaoRansomware()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <p>Total de bloqueios: <span class="card-text" th:text="${auditoria.getTotalBloqueio()}">Some quick example text to build on the card title and make up the bulk of the card's content.</span></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</div>
 
 <!--	<div>-->
 <!--		<ul>-->
@@ -51,8 +126,10 @@
 <!--		</tbody>-->
 <!--	</table>-->
 
-	<p th:text="${text}"></p>
+<p th:text="${text}"></p>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 </html>
