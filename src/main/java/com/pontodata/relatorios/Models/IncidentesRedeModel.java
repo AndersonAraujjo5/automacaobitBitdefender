@@ -1,6 +1,7 @@
 package com.pontodata.relatorios.Models;
 
 public class IncidentesRedeModel {
+    private int id;
     private String endPoint;
     private String endPointIp;
 
@@ -31,6 +32,14 @@ public class IncidentesRedeModel {
         this.targetIp = targetIp;
         this.port = port;
         this.lastBlocked = lastBlocked;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEndPoint() {

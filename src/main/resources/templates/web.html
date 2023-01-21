@@ -1,0 +1,108 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Antimalware</th>
+            <th scope="col">ATC/IDS</th>
+            <th scope="col">Controle de Conteudo</th>
+            <th scope="col">Controle de Dispositivos</th>
+            <th scope="col">Desfesa de Ataque em Rede</th>
+            <th scope="col">Detecção antiexploit avançado</th>
+            <th scope="col">Firewall</th>
+            <th scope="col">Mitigação de RansomWare</th>
+            <th scope="col">Total de bloqueios</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <a href="/relatorio/auditoria/pesquisa/antimalware" th:text="${auditoria.antimalware}" th:title="${auditoria.antimalware}"></a>
+            </td>
+            <td>
+                <a href="/relatorio/auditoria/pesquisa/atcids" th:text="${auditoria.atcIds}" th:title="${auditoria.atcIds}"></a>
+            </td>
+            <td>
+                <a href="/relatorio/auditoria/pesquisa/controle-de-conteudo" th:text="${auditoria.controleConteudo}" th:title="${auditoria.controleConteudo}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/auditoria/pesquisa/controle-de-dispositivos" th:text="${auditoria.controleDispositivo}" th:title="${auditoria.controleDispositivo}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/auditoria/pesquisa/defesa-de-ataque-em-rede" th:text="${auditoria.defesaAtaque}" th:title="${auditoria.defesaAtaque}"></a>
+            </td>
+            <td>
+                <a href="/relatorio/auditoria/pesquisa/deteccao-antiexploit-avancado" th:text="${auditoria.deteccaoAntiexploit}" th:title="${auditoria.deteccaoAntiexploit}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/auditoria/pesquisa/fireall" th:text="${auditoria.firewall}" th:title="${auditoria.firewall}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/auditoria/pesquisa/mitigacao-de-ransomware" th:text="${auditoria.mitigracaoRansomware}" th:title="${auditoria.mitigracaoRansomware}"></a>
+            </td>
+            <td th:text="${auditoria.totalBloqueio}" th:title="${auditoria.totalBloqueio}">Mark</td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome do EndPoint</th>
+            <th scope="col">FQDN do EndPoint</th>
+            <th scope="col">Usuário</th>
+            <th scope="col">Ocorrençia</th>
+            <th scope="col">Ultima Ocorrencia</th>
+            <th scope="col">Modulo</th>
+            <th scope="col">Tipo de Evento</th>
+            <th scope="col">Detalhes</th>
+            <th scope="col">Hash</th>
+            <th scope="col">Ataque sem Arquivo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="relatorio :${relatorios}">
+            <th scope="row" th:text="${relatorio.getId()}">1</th>
+            <td th:text="${relatorio.getNomeEndPoint()}" th:title="${relatorio.getNomeEndPoint()}">Mark</td>
+            <td th:text="${relatorio.getFqdnEndPoint()}" th:title="${relatorio.getFqdnEndPoint()}">Mark</td>
+            <td th:text="${relatorio.getUsuario()}" th:title="${relatorio.getUsuario()}">@mdo</td>
+            <td th:text="${relatorio.getOcorrencia()}" th:title="${relatorio.getOcorrencia()}">@mdo</td>
+            <td th:text="${relatorio.getUltimaOcorrencia()}" th:title="${relatorio.getUltimaOcorrencia()}">@mdo</td>
+            <td th:text="${relatorio.getModulo()}" th:title="${relatorio.getModulo()}">@mdo</td>
+            <td th:text="${relatorio.getTipoEvento()}" th:title="${relatorio.getTipoEvento()}">@mdo</td>
+            <td th:text="${relatorio.getDetalhes().substring(0, 10)}" th:title="${relatorio.getDetalhes()}">@mdo</td>
+            <td th:text="${relatorio.getHash().substring(0, 3)}" th:title="${relatorio.getHash()}">@mdo</td>
+            <td th:text="${relatorio.getAtaqueSemArquivo()}" th:title="${relatorio.getAtaqueSemArquivo()}">@mdo</td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end" >
+            <li class="page-item">
+                <a class="page-link" href="javascript:history.back()">Anterior</a>
+            </li>
+            <div th:if="${page}" th:each="paginas :${page}">
+                <li class="page-item"><a class="page-link" th:href="@{${paginas}}" th:text="${paginas}">1</a></li>
+            </div>
+        </ul>
+        <ul class="pagination justify-content-end" th:if="not ${page} ">
+            <li class="page-item"><a class="page-link" href="/relatorio/auditoria/1">1</a></li>
+            <li class="page-item"><a class="page-link" href="/relatorio/auditoria/2">2</a></li>
+            <li class="page-item"><a class="page-link" href="/relatorio/auditoria/3">3</a></li>
+        </ul>
+    </nav>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+</html>

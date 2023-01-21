@@ -1,0 +1,122 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <table class="table" th:if="${auditoria}">
+        <thead>
+        <tr>
+            <th scope="col">Anúncios</th>
+            <th scope="col">Vídeo, Entretenimento</th>
+            <th scope="col">vidio</th>
+            <th scope="col">Rede Social</th>
+            <th scope="col">Jogos</th>
+            <th scope="col">Jogos de azar</th>
+            <th scope="col">Hobbies</th>
+            <th scope="col">Tablóides</th>
+            <th scope="col">Entretenimento</th>
+            <th scope="col">Outros</th>
+            <th scope="col">Total de bloqueios</th>
+            <th scope="col">Total de vezes bloqueados</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <a href="/relatorio/websites/pesquisa/anuncios" th:text="${auditoria.getAnuncios()}" th:title="${auditoria.getAnuncios()}"></a>
+            </td>
+            <td>
+                <a href="/relatorio/websites/pesquisa/video-entretenimento" th:text="${auditoria.getVidioEntrterimento()}" th:title="${auditoria.getVidioEntrterimento}"></a>
+            </td>
+            <td>
+                <a href="/relatorio/websites/pesquisa/vidio" th:text="${auditoria.getVidio()}" th:title="${auditoria.getVidio}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/websites/pesquisa/rede-social" th:text="${auditoria.getRedeSocial()}" th:title="${auditoria.getRedeSocial}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/websites/pesquisa/jogos" th:text="${auditoria.getJogos()}" th:title="${auditoria.getJogos}"></a>
+            </td>
+            <td>
+                <a href="/relatorio/websites/pesquisa/jogos-de-azar" th:text="${auditoria.getJogosAzar()}" th:title="${auditoria.getJogosAzar}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/websites/pesquisa/hobbies" th:text="${auditoria.getHobbies()}" th:title="${auditoria.getHobbies}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/websites/pesquisa/tabloides" th:text="${auditoria.getTabloides()}" th:title="${auditoria.getTabloides}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/websites/pesquisa/entreterimento" th:text="${auditoria.getEntretenimento()}" th:title="${auditoria.getEntretenimento()}"></a>
+            </td>
+            <td >
+                <a href="/relatorio/websites/pesquisa/outros" th:text="${auditoria.getOutros()}" th:title="${auditoria.getOutros()}"></a>
+            </td>
+            <td >
+               <p th:text="${auditoria.getQtBloqueio()}" th:title="${auditoria.getQtBloqueio}"></p>
+            </td>
+            <td >
+                <p th:text="${auditoria.getQtVezesBloqueados()}" th:title="${auditoria.getQtVezesBloqueados}"></p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table" th:if="${relatorios}">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome do EndPoint</th>
+            <th scope="col">FQDN do EndPoint</th>
+            <th scope="col">URL</th>
+            <th scope="col">Bloqueado Por</th>
+            <th scope="col">Razão do bloqueio</th>
+            <th scope="col">Usuário</th>
+            <th scope="col">Tentativas Bloqueadas</th>
+            <th scope="col">Ultimo Bloqueio</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="relatorio :${relatorios}">
+            <th scope="row" th:text="${relatorio.getId()}">1</th>
+            <td th:text="${relatorio.getNomeEndPoint()}" th:title="${relatorio.getNomeEndPoint()}">Mark</td>
+            <td th:text="${relatorio.getFqdnEndpoint()}" th:title="${relatorio.getFqdnEndpoint()}">Mark</td>
+            <td>
+                <a target="_blank" th:href="@{https://{url} (url = ${relatorio.getSitesBloqueados()})}"
+                   th:text="${relatorio.getSitesBloqueados()}" th:title="${relatorio.getSitesBloqueados()}">@mdo</a>
+            </td>
+            <td th:text="${relatorio.getBloqueadoPor()}" th:title="${relatorio.getBloqueadoPor()}">@mdo</td>
+            <td th:text="${relatorio.getReasaoBloqueio()}" th:title="${relatorio.getReasaoBloqueio()}">@mdo</td>
+            <td th:text="${relatorio.getUsuario()}" th:title="${relatorio.getUsuario()}">@mdo</td>
+            <td th:text="${relatorio.getTentativaBlqueio()}" th:title="${relatorio.getTentativaBlqueio()}">@mdo</td>
+            <td th:text="${relatorio.getUltimoBloqueio()}" th:title="${relatorio.getUltimoBloqueio()}">@mdo</td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end" >
+            <li class="page-item">
+                <a class="page-link" href="javascript:history.back()">Anterior</a>
+            </li>
+            <div th:if="${page}" th:each="paginas :${page}">
+                <li class="page-item"><a class="page-link" th:href="@{${paginas}}" th:text="${paginas}">1</a></li>
+            </div>
+        </ul>
+        <ul class="pagination justify-content-end" th:if="not ${page} ">
+            <li class="page-item"><a class="page-link" href="/relatorio/websites/1">1</a></li>
+            <li class="page-item"><a class="page-link" href="/relatorio/websites/2">2</a></li>
+            <li class="page-item"><a class="page-link" href="/relatorio/websites/3">3</a></li>
+        </ul>
+    </nav>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+</html>

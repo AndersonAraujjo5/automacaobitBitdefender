@@ -1,0 +1,68 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <table class="table" th:if="${relatorios}">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome do EndPoint</th>
+      <th scope="col">IP do EndPoint</th>
+      <th scope="col">FQDN do EndPoint</th>
+      <th scope="col">Label</th>
+      <th scope="col">User</th>
+      <th scope="col">Url</th>
+      <th scope="col">Detection Name</th>
+      <th scope="col">Attack Techinque</th>
+      <th scope="col">Attempts</th>
+      <th scope="col">Attacker's IP</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="relatorio :${relatorios}">
+      <th scope="row" th:text="${relatorio.getId()}">1</th>
+      <td th:text="${relatorio.getEndPoint()}" th:title="${relatorio.getEndPoint()}">Mark</td>
+      <td th:text="${relatorio.getEndPointIp()}" th:title="${relatorio.getEndPointIp()}">Mark</td>
+      <td th:text="${relatorio.getFqdn()}" th:title="${relatorio.getFqdn()}"></td>
+      <td th:text="${relatorio.getLabel()}" th:title="${relatorio.getLabel()}"></td>
+      <td th:text="${relatorio.getUser()}" th:title="${relatorio.getUser()}">@mdo</td>
+      <td th:text="${relatorio.getUrl()}" th:title="${relatorio.getUrl()}">
+        <a target="_blank" th:href="@{https://{url} (url = ${relatorio.getUrl()})}"
+        >@mdo</a>
+      </td>
+      <td th:text="${relatorio.getDetectionName()}" th:title="${relatorio.getDetectionName()}">@mdo</td>
+      <td th:text="${relatorio.getAttackTechnique()}" th:title="${relatorio.getAttackTechnique()}">@mdo</td>
+      <td th:text="${relatorio.getAttempts()}" th:title="${relatorio.getAttempts()}">@mdo</td>
+      <td th:text="${relatorio.getAttackerIp()}" th:title="${relatorio.getAttackerIp()}">@mdo</td>
+
+    </tr>
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end" >
+      <li class="page-item">
+        <a class="page-link" href="javascript:history.back()">Anterior</a>
+      </li>
+      <div th:if="${page}" th:each="paginas :${page}">
+        <li class="page-item"><a class="page-link" th:href="@{${paginas}}" th:text="${paginas}">1</a></li>
+      </div>
+    </ul>
+    <ul class="pagination justify-content-end" th:if="not ${page} ">
+      <li class="page-item"><a class="page-link" href="/relatorio/websites/1">1</a></li>
+      <li class="page-item"><a class="page-link" href="/relatorio/websites/2">2</a></li>
+      <li class="page-item"><a class="page-link" href="/relatorio/websites/3">3</a></li>
+    </ul>
+  </nav>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+</html>

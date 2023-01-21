@@ -14,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Stream;
 
 @Service
@@ -22,7 +24,10 @@ public class FileSystemStorageService implements StorageService {
 	private final Path rootLocation;
 	@Autowired
 	public FileSystemStorageService(StorageProperties properties) {
-		this.rootLocation = Paths.get(properties.getLocation());
+		Date data = new Date();
+		SimpleDateFormat dataFormatada = new SimpleDateFormat("dd-MM-yyyy");
+		String date = dataFormatada.format(data);
+		this.rootLocation = Paths.get(properties.getLocation()+"/"+date);
 	}
 
 	@Override
@@ -32,7 +37,7 @@ public class FileSystemStorageService implements StorageService {
 				throw new StorageException("Failed to store empty file.");
 			}
 			Path destinationFile = this.rootLocation.resolve(
-					Paths.get(filename+"-"+file.getOriginalFilename()))
+					Paths.get(filename))
 					.normalize().toAbsolutePath();
 			if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
 				// This is a security check
@@ -93,6 +98,7 @@ public class FileSystemStorageService implements StorageService {
 
 	@Override
 	public void init() {
+
 		try {
 			Files.createDirectories(rootLocation);
 		}

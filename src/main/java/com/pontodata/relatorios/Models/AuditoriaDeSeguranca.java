@@ -1,6 +1,7 @@
 package com.pontodata.relatorios.Models;
 
 public class AuditoriaDeSeguranca {
+    private int id;
     private String nomeEndPoint;
     private String fqdnEndPoint;
     private String usuario;
@@ -24,6 +25,14 @@ public class AuditoriaDeSeguranca {
         this.detalhes = detalhes;
         this.hash = hash;
         this.ataqueSemArquivo = ataqueSemArquivo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeEndPoint() {

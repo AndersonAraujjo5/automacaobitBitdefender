@@ -1,6 +1,8 @@
 package com.pontodata.relatorios.Models;
 
 public class WebSitesBloqueadosModel {
+
+    private int id;
     private String nomeEndPoint;
     private String fqdnEndpoint;
     private String sitesBloqueados;
@@ -10,6 +12,9 @@ public class WebSitesBloqueadosModel {
     private String usuario;
     private String tentativaBlqueio;
     private String ultimoBloqueio;
+
+    public WebSitesBloqueadosModel() {
+    }
 
     public WebSitesBloqueadosModel(String nomeEndPoint, String fqdnEndpoint, String sitesBloqueados, int countSitesBloqueados) {
         this.nomeEndPoint = nomeEndPoint;
@@ -27,6 +32,14 @@ public class WebSitesBloqueadosModel {
         this.usuario = usuario;
         this.tentativaBlqueio = tentativaBlqueio;
         this.ultimoBloqueio = ultimoBloqueio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeEndPoint() {
@@ -99,6 +112,10 @@ public class WebSitesBloqueadosModel {
 
     public void setCountSitesBloqueados(int countSitesBloqueados) {
         this.countSitesBloqueados += countSitesBloqueados;
+    }
+
+    public int quantidadeCaracteres(String n){
+        return n.length();
     }
 
     public String toBkMaquina() {
